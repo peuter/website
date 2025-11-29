@@ -1,4 +1,6 @@
 {{ define "main" }}
+{{- $docsBase := .Site.Params.docsBaseUrl -}}
+{{- $version := .Site.Params.versionPath -}}
 <!-- Navigation -->
 <nav class="navbar">
     <div class="nav-container">
@@ -15,7 +17,7 @@
             <li><a href="#features">Features</a></li>
             <li><a href="#customization">Customization</a></li>
             <li><a href="#demo">Demo</a></li>
-            <li><a href="https://www.cometvisu.org/CometVisu/en/latest/" target="_blank" rel="noopener">Documentation</a></li>
+            <li><a href="{{ $docsBase }}/en/{{ $version }}/manual/" target="_blank" rel="noopener">Documentation</a></li>
             <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
             <li class="nav-lang">
                 <a href="{{ "" | relLangURL }}" class="lang-switch">DE</a>
@@ -39,7 +41,7 @@
             Fully customizable – from color schemes to your own config structure.
         </p>
         <div class="hero-buttons">
-            <a href="https://www.cometvisu.org/CometVisu/en/latest/" class="btn btn-primary">
+            <a href="{{ $docsBase }}/en/{{ $version }}/" class="btn btn-primary">
                 <span>Documentation</span>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -54,7 +56,7 @@
         </div>
     </div>
     <div class="hero-showcase">
-        <a href="https://www.cometvisu.org/CometVisu/en/latest/demo/?config=demo&testMode=true&enableCache=false&design=tile" 
+        <a href="{{ $docsBase }}/en/{{ $version }}/demo/?config=demo&testMode=true&enableCache=false&design=tile" 
            class="showcase-frame demo-link" 
            target="_blank" 
            rel="noopener"
@@ -275,7 +277,7 @@
         </div>
         
         <div class="demo-cards">
-            <a href="https://www.cometvisu.org/CometVisu/en/latest/demo/?config=demo&testMode=true&enableCache=false&design=tile" 
+            <a href="{{ $docsBase }}/en/{{ $version }}/demo/?config=demo&testMode=true&enableCache=false&design=tile" 
                class="demo-card" 
                target="_blank" 
                rel="noopener">
@@ -299,7 +301,7 @@
                 </span>
             </a>
             
-            <a href="https://www.cometvisu.org/CometVisu/en/latest/demo/?config=demo&testMode=true&enableCache=false&design=pure" 
+            <a href="{{ $docsBase }}/en/{{ $version }}/demo/?config=demo&testMode=true&enableCache=false&design=pure" 
                class="demo-card" 
                target="_blank" 
                rel="noopener">
@@ -332,10 +334,10 @@
             <h2>Ready for Your Own Visualization?</h2>
             <p>Start now with CometVisu and design your smarthome according to your ideas.</p>
             <div class="cta-buttons">
-                <a href="https://www.cometvisu.org/CometVisu/en/latest/manual/install/" class="btn btn-primary btn-large">
+                <a href="{{ $docsBase }}/en/{{ $version }}/manual/install/" class="btn btn-primary btn-large">
                     Start Installation
                 </a>
-                <a href="https://www.cometvisu.org/CometVisu/en/latest/manual/config/" class="btn btn-outline btn-large">
+                <a href="{{ $docsBase }}/en/{{ $version }}/manual/config/" class="btn btn-outline btn-large">
                     Learn Configuration
                 </a>
             </div>
@@ -356,9 +358,9 @@
             <div class="footer-links">
                 <h4>Documentation</h4>
                 <ul>
-                    <li><a href="https://www.cometvisu.org/CometVisu/en/latest/manual/install/">Installation</a></li>
-                    <li><a href="https://www.cometvisu.org/CometVisu/en/latest/manual/config/">Configuration</a></li>
-                    <li><a href="https://www.cometvisu.org/CometVisu/en/latest/manual/config/widgets/">Widgets</a></li>
+                    <li><a href="{{ $docsBase }}/en/{{ $version }}/manual/install/">Installation</a></li>
+                    <li><a href="{{ $docsBase }}/en/{{ $version }}/manual/config/">Configuration</a></li>
+                    <li><a href="{{ $docsBase }}/en/{{ $version }}/manual/config/widgets/">Widgets</a></li>
                 </ul>
             </div>
             
@@ -377,7 +379,7 @@
                     <li><a href="https://github.com/CometVisu/CometVisu/releases">Downloads</a></li>
                     <li><a href="https://github.com/CometVisu/CometVisu/blob/develop/ChangeLog">Changelog</a></li>
                     <li><a href="https://github.com/CometVisu/CometVisu/blob/develop/DEVELOPMENT.md">Development</a></li>
-                    <li><a href="https://www.cometvisu.org/CometVisu/en/latest/api/">API Reference</a></li>
+                    <li><a href="{{ $docsBase }}/en/{{ $version }}/api/">API Reference</a></li>
                 </ul>
             </div>
         </div>
