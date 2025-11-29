@@ -432,6 +432,60 @@ code {
     transition: filter 0.3s ease;
 }
 
+/* Demo Link Styles */
+.demo-link {
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+
+.demo-link .showcase-content {
+    position: relative;
+}
+
+.demo-overlay-hover {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.demo-link:hover .demo-overlay-hover {
+    opacity: 1;
+}
+
+.demo-link:hover .showcase-img {
+    filter: blur(2px);
+}
+
+.showcase-open-hint {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-left: auto;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.demo-link:hover .showcase-open-hint {
+    opacity: 1;
+    color: var(--primary);
+}
+
+.demo-overlay-hover span {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
 .demo-overlay-click {
     position: absolute;
     inset: 0;
@@ -765,6 +819,73 @@ section {
 /* Demo Section */
 .demo {
     background: var(--bg-dark);
+}
+
+/* Demo Cards */
+.demo-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+}
+
+.demo-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 48px 32px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.demo-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(255, 128, 0, 0.15);
+}
+
+.demo-card-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.demo-card-icon svg {
+    stroke: var(--bg-dark);
+}
+
+.demo-card h3 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+}
+
+.demo-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.demo-card-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary);
+    font-weight: 600;
+    margin-top: auto;
+}
+
+.demo-card:hover .demo-card-link {
+    gap: 12px;
 }
 
 .demo-frame {

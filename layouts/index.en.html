@@ -2,7 +2,7 @@
 <!-- Navigation -->
 <nav class="navbar">
     <div class="nav-container">
-        <a href="/" class="nav-logo">
+        <a href="{{ "" | relURL }}" class="nav-logo">
             <img src="{{ "images/comet_icon_512x512_ff8000.png" | relURL }}" alt="CometVisu Logo" class="logo-img">
             <span class="logo-text">CometVisu</span>
         </a>
@@ -18,7 +18,7 @@
             <li><a href="https://www.cometvisu.org/CometVisu/en/latest/" target="_blank" rel="noopener">Documentation</a></li>
             <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
             <li class="nav-lang">
-                <a href="/" class="lang-switch">DE</a>
+                <a href="{{ "" | relLangURL }}" class="lang-switch">DE</a>
             </li>
         </ul>
     </div>
@@ -54,63 +54,37 @@
         </div>
     </div>
     <div class="hero-showcase">
-        <div class="interactive-demo-wrapper">
-            <div class="demo-size-controls">
-                <span class="demo-size-label">Preview:</span>
-                <button class="size-preset active" data-width="100%" data-height="100%">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="2" y="3" width="20" height="14" rx="2"/>
-                        <line x1="8" y1="21" x2="16" y2="21"/>
-                        <line x1="12" y1="17" x2="12" y2="21"/>
+        <a href="https://www.cometvisu.org/CometVisu/en/latest/demo/?config=demo&testMode=true&enableCache=false&design=tile" 
+           class="showcase-frame demo-link" 
+           target="_blank" 
+           rel="noopener"
+           title="Open live demo in new tab">
+            <div class="showcase-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="showcase-title">Live Demo</span>
+                <span class="showcase-open-hint">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
                     </svg>
-                    Desktop
-                </button>
-                <button class="size-preset" data-width="768px" data-height="100%">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="4" y="2" width="16" height="20" rx="2"/>
-                        <line x1="12" y1="18" x2="12" y2="18"/>
-                    </svg>
-                    Tablet
-                </button>
-                <button class="size-preset" data-width="375px" data-height="100%">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="5" y="2" width="14" height="20" rx="2"/>
-                        <line x1="12" y1="18" x2="12" y2="18"/>
-                    </svg>
-                    Mobile
-                </button>
-                <button class="fullscreen-btn" id="fullscreenBtn" title="Open in new tab">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
-                    </svg>
-                </button>
+                    Open in new tab
+                </span>
             </div>
-            <div class="demo-container-wrapper">
-                <div class="demo-container" id="demoContainer">
-                    <div class="demo-placeholder" id="demoPlaceholder">
-                        <div class="placeholder-content">
-                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <polygon points="5 3 19 12 5 21 5 3"/>
-                            </svg>
-                            <span>Click to load interactive demo</span>
-                            <span class="placeholder-hint">Experience CometVisu live in your browser</span>
-                        </div>
-                    </div>
-                    <iframe id="heroIframe" class="demo-iframe hidden" frameborder="0" allowfullscreen></iframe>
-                    <div class="resize-handle" id="resizeHandle">
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
-                            <circle cx="2" cy="10" r="1.5"/>
-                            <circle cx="6" cy="10" r="1.5"/>
-                            <circle cx="10" cy="10" r="1.5"/>
-                            <circle cx="6" cy="6" r="1.5"/>
-                            <circle cx="10" cy="6" r="1.5"/>
-                            <circle cx="10" cy="2" r="1.5"/>
+            <div class="showcase-content">
+                <img src="{{ "images/tile-demo.svg" | relURL }}" alt="CometVisu Tile Demo" class="showcase-img">
+                <div class="demo-overlay-hover">
+                    <div class="play-button">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
                         </svg>
                     </div>
+                    <span>Click for live demo</span>
                 </div>
             </div>
-            <div class="demo-dimensions" id="resizeDimensions">1200 × 675 px</div>
-        </div>
+        </a>
     </div>
 </section>
 
@@ -300,25 +274,52 @@
             </p>
         </div>
         
-        <div class="demo-frame">
-            <div class="demo-tabs">
-                <button class="demo-tab active" data-demo="tile">Tile Structure</button>
-                <button class="demo-tab" data-demo="pure">Pure Structure</button>
-            </div>
-            <div class="demo-container">
-                <iframe id="demo-iframe" src="https://www.cometvisu.org/CometVisu/en/latest/_static/CometVisu/?config=demo&testMode=true&enableCache=false&design=tile" 
-                        frameborder="0" 
-                        allowfullscreen>
-                </iframe>
-            </div>
-            <div class="demo-overlay">
-                <p>Demo is loading...</p>
-            </div>
-        </div>
-        
-        <div class="demo-cta">
-            <a href="https://www.cometvisu.org/CometVisu/en/latest/_static/CometVisu/?config=demo&testMode=true" class="btn btn-primary" target="_blank">
-                Open Demo in Fullscreen
+        <div class="demo-cards">
+            <a href="https://www.cometvisu.org/CometVisu/en/latest/demo/?config=demo&testMode=true&enableCache=false&design=tile" 
+               class="demo-card" 
+               target="_blank" 
+               rel="noopener">
+                <div class="demo-card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="7" height="7" rx="1"/>
+                        <rect x="14" y="3" width="7" height="7" rx="1"/>
+                        <rect x="3" y="14" width="7" height="7" rx="1"/>
+                        <rect x="14" y="14" width="7" height="7" rx="1"/>
+                    </svg>
+                </div>
+                <h3>Tile Structure</h3>
+                <p>Modern tile design with touch optimization and animated transitions</p>
+                <span class="demo-card-link">
+                    Open demo
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                    </svg>
+                </span>
+            </a>
+            
+            <a href="https://www.cometvisu.org/CometVisu/en/latest/demo/?config=demo&testMode=true&enableCache=false&design=pure" 
+               class="demo-card" 
+               target="_blank" 
+               rel="noopener">
+                <div class="demo-card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <line x1="3" y1="9" x2="21" y2="9"/>
+                        <line x1="9" y1="21" x2="9" y2="9"/>
+                    </svg>
+                </div>
+                <h3>Pure Structure</h3>
+                <p>Classic layout with clear page structure and navigation</p>
+                <span class="demo-card-link">
+                    Open demo
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                    </svg>
+                </span>
             </a>
         </div>
     </div>
@@ -376,6 +377,7 @@
                     <li><a href="https://github.com/CometVisu/CometVisu/releases">Downloads</a></li>
                     <li><a href="https://github.com/CometVisu/CometVisu/blob/develop/ChangeLog">Changelog</a></li>
                     <li><a href="https://github.com/CometVisu/CometVisu/blob/develop/DEVELOPMENT.md">Development</a></li>
+                    <li><a href="https://www.cometvisu.org/CometVisu/en/latest/api/">API Reference</a></li>
                 </ul>
             </div>
         </div>
