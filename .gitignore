@@ -18,3 +18,6 @@ Thumbs.db
 
 # Hugo cache
 .hugo_build.lock
+
+
+static/demo/

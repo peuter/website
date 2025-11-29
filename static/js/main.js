@@ -48,6 +48,102 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Demo Lazy Loading - Load iframe on click
+    const demoLazyContainers = document.querySelectorAll('.demo-lazy-container');
+    
+    demoLazyContainers.forEach(container => {
+        container.addEventListener('click', function() {
+            if (this.classList.contains('loaded')) return;
+            
+            const demoUrl = this.dataset.demoUrl;
+            if (!demoUrl) return;
+            
+            // Create iframe
+            const iframe = document.createElement('iframe');
+            iframe.src = demoUrl;
+            iframe.title = 'CometVisu Demo';
+            
+            // Determine which class to use based on container
+            if (this.classList.contains('showcase-content')) {
+                iframe.className = 'showcase-iframe';
+            } else {
+                iframe.className = 'demo-frame';
+                iframe.id = 'demo-frame';
+            }
+            
+            // Append iframe and mark as loaded
+            this.appendChild(iframe);
+            this.classList.add('loaded');
+            
+            // Also mark parent showcase-frame as loaded (for resize controls visibility)
+            const showcaseFrame = this.closest('.showcase-frame');
+            if (showcaseFrame) {
+                showcaseFrame.classList.add('demo-loaded');
+            }
+            
+            // Store the base URL for tab switching
+            this.dataset.loadedUrl = demoUrl;
+        });
+    });
+    
+    // Demo Resize Controls
+    const resizeButtons = document.querySelectorAll('.resize-btn[data-size]');
+    const showcaseContent = document.querySelector('.showcase-content');
+    
+    if (resizeButtons.length > 0 && showcaseContent) {
+        resizeButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active state
+                resizeButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Get size
+                const size = this.dataset.size;
+                
+                // Apply size to showcase content
+                showcaseContent.dataset.size = size;
+            });
+        });
+    }
+    
+    // Demo Tab Switching
+    const demoTabs = document.querySelectorAll('.demo-tab[data-config]');
+    const demoFrameContainer = document.querySelector('#demo .demo-lazy-container');
+    
+    if (demoTabs.length > 0 && demoFrameContainer) {
+        demoTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Update active state
+                demoTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Get config name
+                const config = this.dataset.config;
+                
+                // Get base URL
+                const baseUrl = demoFrameContainer.dataset.demoUrl;
+                
+                // Build new URL
+                let newUrl = baseUrl;
+                if (config) {
+                    newUrl += '?config=' + config + '&testMode=true&enableCache=false';
+                }
+                
+                // If already loaded, update iframe src
+                if (demoFrameContainer.classList.contains('loaded')) {
+                    const iframe = demoFrameContainer.querySelector('iframe');
+                    if (iframe) {
+                        iframe.src = newUrl;
+                    }
+                } else {
+                    // Load the demo with the selected config
+                    demoFrameContainer.dataset.demoUrl = newUrl;
+                    demoFrameContainer.click();
+                }
+            });
+        });
+    }
+    
     // Intersection Observer for animations
     const observerOptions = {
         root: null,

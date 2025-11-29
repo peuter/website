@@ -32,6 +32,21 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: cometvisu/package-lock.json
+
+      - name: Build CometVisu Demo
+        run: |
+          cd cometvisu
+          npm ci
+          sed -i 's/"qx.globalErrorHandling": true,/"qx.globalErrorHandling": false,/g' compile.json
+          npx qx deploy --clean -t build -f=false --source-maps --save-source-in-map -o ../static/demo
+          cp ../static/demo/resource/demo/visu_config_demo-tile.xml ../static/demo/resource/config/visu_config.xml
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
