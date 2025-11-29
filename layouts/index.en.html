@@ -1,0 +1,388 @@
+{{ define "main" }}
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="/" class="nav-logo">
+            <img src="{{ "images/comet_icon_512x512_ff8000.png" | relURL }}" alt="CometVisu Logo" class="logo-img">
+            <span class="logo-text">CometVisu</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-menu">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#customization">Customization</a></li>
+            <li><a href="#demo">Demo</a></li>
+            <li><a href="https://www.cometvisu.org/CometVisu/en/latest/" target="_blank" rel="noopener">Documentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="nav-lang">
+                <a href="/" class="lang-switch">DE</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-bg">
+        <div class="hero-grid"></div>
+    </div>
+    <div class="container hero-content">
+        <h1 class="hero-title">
+            <span class="gradient-text">Your Smarthome.</span>
+            <span>Your Visualization.</span>
+        </h1>
+        <p class="hero-subtitle">
+            CometVisu is the flexible open-source visualization for your smarthome. 
+            Fully customizable – from color schemes to your own config structure.
+        </p>
+        <div class="hero-buttons">
+            <a href="https://www.cometvisu.org/CometVisu/en/latest/" class="btn btn-primary">
+                <span>Documentation</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+            <a href="https://github.com/CometVisu/CometVisu" class="btn btn-secondary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                <span>GitHub</span>
+            </a>
+        </div>
+    </div>
+    <div class="hero-showcase">
+        <div class="interactive-demo-wrapper">
+            <div class="demo-size-controls">
+                <span class="demo-size-label">Preview:</span>
+                <button class="size-preset active" data-width="100%" data-height="100%">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="3" width="20" height="14" rx="2"/>
+                        <line x1="8" y1="21" x2="16" y2="21"/>
+                        <line x1="12" y1="17" x2="12" y2="21"/>
+                    </svg>
+                    Desktop
+                </button>
+                <button class="size-preset" data-width="768px" data-height="100%">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="4" y="2" width="16" height="20" rx="2"/>
+                        <line x1="12" y1="18" x2="12" y2="18"/>
+                    </svg>
+                    Tablet
+                </button>
+                <button class="size-preset" data-width="375px" data-height="100%">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="5" y="2" width="14" height="20" rx="2"/>
+                        <line x1="12" y1="18" x2="12" y2="18"/>
+                    </svg>
+                    Mobile
+                </button>
+                <button class="fullscreen-btn" id="fullscreenBtn" title="Open in new tab">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="demo-container-wrapper">
+                <div class="demo-container" id="demoContainer">
+                    <div class="demo-placeholder" id="demoPlaceholder">
+                        <div class="placeholder-content">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <polygon points="5 3 19 12 5 21 5 3"/>
+                            </svg>
+                            <span>Click to load interactive demo</span>
+                            <span class="placeholder-hint">Experience CometVisu live in your browser</span>
+                        </div>
+                    </div>
+                    <iframe id="heroIframe" class="demo-iframe hidden" frameborder="0" allowfullscreen></iframe>
+                    <div class="resize-handle" id="resizeHandle">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                            <circle cx="2" cy="10" r="1.5"/>
+                            <circle cx="6" cy="10" r="1.5"/>
+                            <circle cx="10" cy="10" r="1.5"/>
+                            <circle cx="6" cy="6" r="1.5"/>
+                            <circle cx="10" cy="6" r="1.5"/>
+                            <circle cx="10" cy="2" r="1.5"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="demo-dimensions" id="resizeDimensions">1200 × 675 px</div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="features">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">The Modern Tile Structure</h2>
+            <p class="section-subtitle">
+                Responsive tile design with Web Components – perfect for touch operation on tablets and smartphones
+            </p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7" rx="1"/>
+                        <rect x="14" y="3" width="7" height="7" rx="1"/>
+                        <rect x="3" y="14" width="7" height="7" rx="1"/>
+                        <rect x="14" y="14" width="7" height="7" rx="1"/>
+                    </svg>
+                </div>
+                <h3>Tile-based Layout</h3>
+                <p>Flexible 3x3 grid tiles for clear control. Widgets can span multiple cells.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="5" y="2" width="14" height="20" rx="2"/>
+                        <line x1="12" y1="18" x2="12" y2="18"/>
+                    </svg>
+                </div>
+                <h3>Touch-optimized</h3>
+                <p>Designed perfectly for operation on wall panels, tablets and smartphones.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                </div>
+                <h3>Modern Design</h3>
+                <p>Dark theme with soft gradients and animated transitions for an elegant appearance.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <h3>Web Components</h3>
+                <p>Native Custom Elements like <code>&lt;cv-switch&gt;</code> for maximum extensibility.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Customization Section -->
+<section id="customization" class="customization">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Unlimited Customization Options</h2>
+            <p class="section-subtitle">
+                From simple CSS adjustments to your own config structure – CometVisu grows with your requirements
+            </p>
+        </div>
+        
+        <div class="customization-levels">
+            <div class="level-card">
+                <div class="level-number">1</div>
+                <div class="level-content">
+                    <h3>Change Color Scheme</h3>
+                    <p>Customize the entire appearance with just a few CSS variables</p>
+                    <div class="code-preview">
+                        <pre><code>:root {
+  --primary-color: #ff6b35;
+  --background: #1a1a2e;
+  --surface: #16213e;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="level-card">
+                <div class="level-number">2</div>
+                <div class="level-content">
+                    <h3>Use Existing Designs</h3>
+                    <p>Choose from various included designs</p>
+                    <div class="design-preview">
+                        <span class="design-chip" style="--accent: #ff8000;">Tile</span>
+                        <span class="design-chip" style="--accent: #ffb347;">Pure</span>
+                        <span class="design-chip" style="--accent: #808080;">Metal</span>
+                        <span class="design-chip" style="--accent: #4a90d9;">Planet</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="level-card">
+                <div class="level-number">3</div>
+                <div class="level-content">
+                    <h3>Custom CSS</h3>
+                    <p>Custom styles for individual adjustments without code changes</p>
+                    <div class="code-preview">
+                        <pre><code>.cv-switch.myCustomStyle {
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="level-card">
+                <div class="level-number">4</div>
+                <div class="level-content">
+                    <h3>Custom Widgets & Plugins</h3>
+                    <p>Develop custom widgets for special requirements</p>
+                    <ul class="feature-list">
+                        <li>Plugin system for external libraries</li>
+                        <li>Lazy-loading for optimal performance</li>
+                        <li>Qooxdoo Framework for OOP development</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="level-card featured">
+                <div class="level-number">5</div>
+                <div class="level-content">
+                    <h3>Custom Config Structure</h3>
+                    <p>For maximum flexibility: Develop your own structure like the Tile structure</p>
+                    <ul class="feature-list">
+                        <li>Custom XML schema definition</li>
+                        <li>Custom parsers and controllers</li>
+                        <li>Completely standalone visualization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Backend Section -->
+<section id="backends" class="backends">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Compatible with Your System</h2>
+            <p class="section-subtitle">
+                CometVisu connects with various smarthome backends
+            </p>
+        </div>
+        
+        <div class="backend-grid">
+            <div class="backend-card">
+                <div class="backend-logo">KNX</div>
+                <h3>KNX / knxd</h3>
+                <p>Direct communication with the KNX bus via knxd/eibd</p>
+            </div>
+            
+            <div class="backend-card">
+                <div class="backend-logo">OH</div>
+                <h3>openHAB</h3>
+                <p>REST API integration with openHAB 2/3/4</p>
+            </div>
+            
+            <div class="backend-card">
+                <div class="backend-logo">MQTT</div>
+                <h3>MQTT</h3>
+                <p>Universal MQTT connection for IoT devices</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Demo Section -->
+<section id="demo" class="demo">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Live Demo</h2>
+            <p class="section-subtitle">
+                Try CometVisu directly in your browser
+            </p>
+        </div>
+        
+        <div class="demo-frame">
+            <div class="demo-tabs">
+                <button class="demo-tab active" data-demo="tile">Tile Structure</button>
+                <button class="demo-tab" data-demo="pure">Pure Structure</button>
+            </div>
+            <div class="demo-container">
+                <iframe id="demo-iframe" src="https://www.cometvisu.org/CometVisu/en/latest/_static/CometVisu/?config=demo&testMode=true&enableCache=false&design=tile" 
+                        frameborder="0" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+            <div class="demo-overlay">
+                <p>Demo is loading...</p>
+            </div>
+        </div>
+        
+        <div class="demo-cta">
+            <a href="https://www.cometvisu.org/CometVisu/en/latest/_static/CometVisu/?config=demo&testMode=true" class="btn btn-primary" target="_blank">
+                Open Demo in Fullscreen
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Ready for Your Own Visualization?</h2>
+            <p>Start now with CometVisu and design your smarthome according to your ideas.</p>
+            <div class="cta-buttons">
+                <a href="https://www.cometvisu.org/CometVisu/en/latest/manual/install/" class="btn btn-primary btn-large">
+                    Start Installation
+                </a>
+                <a href="https://www.cometvisu.org/CometVisu/en/latest/manual/config/" class="btn btn-outline btn-large">
+                    Learn Configuration
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="{{ "images/comet_icon_512x512_ff8000.png" | relURL }}" alt="CometVisu" class="footer-logo">
+                <p>Open Source Smarthome Visualization</p>
+                <p class="footer-license">Licensed under GPL-3.0</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Documentation</h4>
+                <ul>
+                    <li><a href="https://www.cometvisu.org/CometVisu/en/latest/manual/install/">Installation</a></li>
+                    <li><a href="https://www.cometvisu.org/CometVisu/en/latest/manual/config/">Configuration</a></li>
+                    <li><a href="https://www.cometvisu.org/CometVisu/en/latest/manual/config/widgets/">Widgets</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="https://github.com/CometVisu/CometVisu">GitHub</a></li>
+                    <li><a href="https://knx-user-forum.de/forum/supportforen/cometvisu">KNX User Forum</a></li>
+                    <li><a href="https://gitter.im/CometVisu/CometVisu">Gitter Chat</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Project</h4>
+                <ul>
+                    <li><a href="https://github.com/CometVisu/CometVisu/releases">Downloads</a></li>
+                    <li><a href="https://github.com/CometVisu/CometVisu/blob/develop/ChangeLog">Changelog</a></li>
+                    <li><a href="https://github.com/CometVisu/CometVisu/blob/develop/DEVELOPMENT.md">Development</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; {{ now.Year }} CometVisu Team. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+{{ end }}

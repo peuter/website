@@ -1,0 +1,4 @@
+[submodule "cometvisu"]
+	path = cometvisu
+	url = https://github.com/CometVisu/CometVisu.git
+	branch = develop

@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f"/>
+      <stop offset="100%" style="stop-color:#12121a"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a25"/>
+      <stop offset="100%" style="stop-color:#222230"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff8000"/>
+      <stop offset="100%" style="stop-color:#ffb347"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+  
+  <!-- Grid pattern -->
+  <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+    <rect width="60" height="60" fill="none" stroke="#ff8000" stroke-opacity="0.05"/>
+  </pattern>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  
+  <!-- Sidebar -->
+  <rect x="0" y="0" width="80" height="1080" fill="#12121a"/>
+  <rect x="80" y="0" width="1" height="1080" fill="#2a2a3a"/>
+  
+  <!-- Sidebar Icons -->
+  <circle cx="40" cy="60" r="20" fill="url(#accentGrad)" opacity="0.8"/>
+  <rect x="25" y="130" width="30" height="30" rx="5" fill="#2a2a3a"/>
+  <rect x="25" y="180" width="30" height="30" rx="5" fill="#2a2a3a"/>
+  <rect x="25" y="230" width="30" height="30" rx="5" fill="url(#accentGrad)" opacity="0.6"/>
+  <rect x="25" y="280" width="30" height="30" rx="5" fill="#2a2a3a"/>
+  
+  <!-- Header -->
+  <rect x="80" y="0" width="1840" height="70" fill="#12121a"/>
+  <rect x="80" y="70" width="1840" height="1" fill="#2a2a3a"/>
+  <text x="120" y="45" font-family="Inter, sans-serif" font-size="24" font-weight="600" fill="#ffffff">Wohnzimmer</text>
+  
+  <!-- Main Grid - Row 1 -->
+  <!-- Tile 1: Switch -->
+  <rect x="120" y="100" width="280" height="280" rx="20" fill="url(#cardGrad)"/>
+  <rect x="120" y="100" width="280" height="280" rx="20" stroke="#2a2a3a" stroke-width="1" fill="none"/>
+  <circle cx="260" cy="220" r="50" fill="url(#accentGrad)"/>
+  <rect x="240" y="200" width="40" height="40" rx="5" fill="#0a0a0f" opacity="0.3"/>
+  <text x="260" y="320" font-family="Inter, sans-serif" font-size="16" fill="#a0a0b0" text-anchor="middle">Deckenlampe</text>
+  <text x="260" y="345" font-family="Inter, sans-serif" font-size="14" fill="#ff8000" text-anchor="middle">An</text>
+  
+  <!-- Tile 2: Dimmer -->
+  <rect x="420" y="100" width="280" height="280" rx="20" fill="url(#cardGrad)"/>
+  <rect x="420" y="100" width="280" height="280" rx="20" stroke="#2a2a3a" stroke-width="1" fill="none"/>
+  <circle cx="560" cy="220" r="50" fill="#2a2a3a"/>
+  <circle cx="560" cy="220" r="50" fill="url(#accentGrad)" opacity="0.7" stroke="#ff8000" stroke-width="3" stroke-dasharray="220 100"/>
+  <text x="560" y="230" font-family="Inter, sans-serif" font-size="24" font-weight="600" fill="#ffffff" text-anchor="middle">75%</text>
+  <text x="560" y="320" font-family="Inter, sans-serif" font-size="16" fill="#a0a0b0" text-anchor="middle">Stehlampe</text>
+  
+  <!-- Tile 3: Temperature -->
+  <rect x="720" y="100" width="280" height="280" rx="20" fill="url(#cardGrad)"/>
+  <rect x="720" y="100" width="280" height="280" rx="20" stroke="#2a2a3a" stroke-width="1" fill="none"/>
+  <text x="860" y="200" font-family="Inter, sans-serif" font-size="48" font-weight="700" fill="#ffffff" text-anchor="middle">21.5°</text>
+  <text x="860" y="250" font-family="Inter, sans-serif" font-size="16" fill="#ff8000" text-anchor="middle">Soll: 22.0°</text>
+  <text x="860" y="320" font-family="Inter, sans-serif" font-size="16" fill="#a0a0b0" text-anchor="middle">Raumtemperatur</text>
+  
+  <!-- Tile 4: Shutter -->
+  <rect x="1020" y="100" width="280" height="280" rx="20" fill="url(#cardGrad)"/>
+  <rect x="1020" y="100" width="280" height="280" rx="20" stroke="#2a2a3a" stroke-width="1" fill="none"/>
+  <rect x="1110" y="160" width="100" height="80" rx="5" fill="#2a2a3a"/>
+  <rect x="1110" y="160" width="100" height="32" rx="3" fill="url(#accentGrad)" opacity="0.6"/>
+  <text x="1160" y="290" font-family="Inter, sans-serif" font-size="20" font-weight="600" fill="#ffffff" text-anchor="middle">40%</text>
+  <text x="1160" y="320" font-family="Inter, sans-serif" font-size="16" fill="#a0a0b0" text-anchor="middle">Rollladen</text>
+  
+  <!-- Tile 5: Wide Info -->
+  <rect x="1320" y="100" width="580" height="280" rx="20" fill="url(#cardGrad)"/>
+  <rect x="1320" y="100" width="580" height="280" rx="20" stroke="#2a2a3a" stroke-width="1" fill="none"/>
+  <text x="1360" y="150" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#ffffff">Energieverbrauch</text>
+  <!-- Simple Chart -->
+  <polyline points="1360,300 1420,260 1480,280 1540,220 1600,240 1660,200 1720,230 1780,190 1840,210" 
+            fill="none" stroke="url(#accentGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1360" y="340" font-family="Inter, sans-serif" font-size="14" fill="#a0a0b0">Heute: 12.4 kWh</text>
+  
+  <!-- Row 2 -->
+  <!-- Tile 6: Switch Off -->
+  <rect x="120" y="400" width="280" height="280" rx="20" fill="url(#cardGrad)"/>
+  <rect x="120" y="400" width="280" height="280" rx="20" stroke="#2a2a3a" stroke-width="1" fill="none"/>
+  <circle cx="260" cy="520" r="50" fill="#2a2a3a"/>
+  <text x="260" y="620" font-family="Inter, sans-serif" font-size="16" fill="#a0a0b0" text-anchor="middle">Küche</text>
+  <text x="260" y="645" font-family="Inter, sans-serif" font-size="14" fill="#606070" text-anchor="middle">Aus</text>
+  
+  <!-- Tile 7: Color -->
+  <rect x="420" y="400" width="280" height="280" rx="20" fill="url(#cardGrad)"/>
+  <rect x="420" y="400" width="280" height="280" rx="20" stroke="#2a2a3a" stroke-width="1" fill="none"/>
+  <circle cx="560" cy="520" r="50" fill="#f093fb"/>
+  <text x="560" y="620" font-family="Inter, sans-serif" font-size="16" fill="#a0a0b0" text-anchor="middle">RGB Strip</text>
+  <text x="560" y="645" font-family="Inter, sans-serif" font-size="14" fill="#f093fb" text-anchor="middle">Magenta</text>
+  
+  <!-- Tile 8: Humidity -->
+  <rect x="720" y="400" width="280" height="280" rx="20" fill="url(#cardGrad)"/>
+  <rect x="720" y="400" width="280" height="280" rx="20" stroke="#2a2a3a" stroke-width="1" fill="none"/>
+  <text x="860" y="500" font-family="Inter, sans-serif" font-size="48" font-weight="700" fill="#ffffff" text-anchor="middle">58%</text>
+  <text x="860" y="550" font-family="Inter, sans-serif" font-size="16" fill="#ffb347" text-anchor="middle">💧</text>
+  <text x="860" y="620" font-family="Inter, sans-serif" font-size="16" fill="#a0a0b0" text-anchor="middle">Luftfeuchtigkeit</text>
+  
+  <!-- Tile 9: Scene -->
+  <rect x="1020" y="400" width="280" height="280" rx="20" fill="url(#cardGrad)"/>
+  <rect x="1020" y="400" width="280" height="280" rx="20" stroke="#2a2a3a" stroke-width="1" fill="none"/>
+  <rect x="1100" y="480" width="120" height="50" rx="10" fill="url(#accentGrad)"/>
+  <text x="1160" y="513" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#0a0a0f" text-anchor="middle">Aktivieren</text>
+  <text x="1160" y="620" font-family="Inter, sans-serif" font-size="16" fill="#a0a0b0" text-anchor="middle">Szene: Film</text>
+  
+  <!-- Tile 10: Status -->
+  <rect x="1320" y="400" width="280" height="280" rx="20" fill="url(#cardGrad)"/>
+  <rect x="1320" y="400" width="280" height="280" rx="20" stroke="#2a2a3a" stroke-width="1" fill="none"/>
+  <circle cx="1460" cy="520" r="12" fill="#28c840"/>
+  <text x="1460" y="570" font-family="Inter, sans-serif" font-size="20" font-weight="600" fill="#ffffff" text-anchor="middle">Online</text>
+  <text x="1460" y="620" font-family="Inter, sans-serif" font-size="16" fill="#a0a0b0" text-anchor="middle">System Status</text>
+  
+  <!-- Tile 11: Weather -->
+  <rect x="1620" y="400" width="280" height="280" rx="20" fill="url(#cardGrad)"/>
+  <rect x="1620" y="400" width="280" height="280" rx="20" stroke="#2a2a3a" stroke-width="1" fill="none"/>
+  <text x="1760" y="500" font-family="Inter, sans-serif" font-size="36" fill="#ffffff" text-anchor="middle">☀️</text>
+  <text x="1760" y="560" font-family="Inter, sans-serif" font-size="24" font-weight="600" fill="#ffffff" text-anchor="middle">18°C</text>
+  <text x="1760" y="620" font-family="Inter, sans-serif" font-size="16" fill="#a0a0b0" text-anchor="middle">Außentemperatur</text>
+  
+  <!-- Row 3 - Partial -->
+  <rect x="120" y="700" width="580" height="180" rx="20" fill="url(#cardGrad)"/>
+  <rect x="120" y="700" width="580" height="180" rx="20" stroke="#2a2a3a" stroke-width="1" fill="none"/>
+  <text x="160" y="750" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#ffffff">Heizungsübersicht</text>
+  <text x="160" y="800" font-family="Inter, sans-serif" font-size="14" fill="#a0a0b0">Wohnzimmer: 21.5° | Bad: 23.0° | Schlafzimmer: 19.5°</text>
+  <text x="160" y="840" font-family="Inter, sans-serif" font-size="14" fill="#ff8000">Heizmodus: Eco</text>
+  
+  <rect x="720" y="700" width="280" height="180" rx="20" fill="url(#cardGrad)"/>
+  <rect x="720" y="700" width="280" height="180" rx="20" stroke="#2a2a3a" stroke-width="1" fill="none"/>
+  <text x="860" y="770" font-family="Inter, sans-serif" font-size="36" font-weight="700" fill="#ff8000" text-anchor="middle">4</text>
+  <text x="860" y="810" font-family="Inter, sans-serif" font-size="14" fill="#a0a0b0" text-anchor="middle">Fenster offen</text>
+  
+  <!-- CometVisu Watermark -->
+  <text x="1850" y="1050" font-family="Inter, sans-serif" font-size="14" fill="#2a2a3a" text-anchor="end">CometVisu Tile Demo</text>
+</svg>

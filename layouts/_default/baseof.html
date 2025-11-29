@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Site.Title }}</title>
+    <meta name="description" content="{{ .Site.Params.description }}">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="512x512" href="{{ "images/comet_icon_512x512_ff8000.png" | relURL }}">
+    <link rel="apple-touch-icon" href="{{ "images/comet_icon_512x512_ff8000.png" | relURL }}">
+</head>
+<body>
+    {{ block "main" . }}{{ end }}
+    
+    <script src="{{ "js/main.js" | relURL }}"></script>
+</body>
+</html>
