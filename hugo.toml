@@ -1,10 +1,10 @@
 baseURL = 'https://cometvisu.github.io/'
-languageCode = 'de'
-defaultContentLanguage = 'de'
-title = 'CometVisu - Smarthome Visualisierung'
+languageCode = 'en'
+defaultContentLanguage = 'en'
+title = 'CometVisu - Smarthome Visualization'
 
 [params]
-  description = "Flexible, anpassbare Smarthome-Visualisierung für KNX, OpenHAB und mehr"
+  description = "Flexible, customizable smarthome visualization for KNX, OpenHAB and more"
   author = "CometVisu Team"
   githubRepo = "https://github.com/CometVisu/CometVisu"
   # Version path depends on CometVisu submodule branch: "latest" for master, "develop" for develop
@@ -12,18 +12,18 @@ title = 'CometVisu - Smarthome Visualisierung'
   docsBaseUrl = "https://www.cometvisu.org/CometVisu"
 
 [languages]
-  [languages.de]
-    languageName = "Deutsch"
-    weight = 1
-    title = "CometVisu - Smarthome Visualisierung"
-    [languages.de.params]
-      description = "Flexible, anpassbare Smarthome-Visualisierung für KNX, OpenHAB und mehr"
   [languages.en]
     languageName = "English"
-    weight = 2
+    weight = 1
     title = "CometVisu - Smarthome Visualization"
     [languages.en.params]
       description = "Flexible, customizable smarthome visualization for KNX, OpenHAB and more"
+  [languages.de]
+    languageName = "Deutsch"
+    weight = 2
+    title = "CometVisu - Smarthome Visualisierung"
+    [languages.de.params]
+      description = "Flexible, anpassbare Smarthome-Visualisierung für KNX, OpenHAB und mehr"
 
 [menu]
   [[menu.main]]
