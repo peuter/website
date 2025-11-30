@@ -58,6 +58,18 @@ document.addEventListener('DOMContentLoaded', function() {
             const demoUrl = this.dataset.demoUrl;
             if (!demoUrl) return;
             
+            const self = this;
+            const scrollPos = window.scrollY;
+            let scrollLocked = true;
+            
+            // Lock scroll position during iframe load
+            const scrollHandler = function() {
+                if (scrollLocked) {
+                    window.scrollTo(0, scrollPos);
+                }
+            };
+            window.addEventListener('scroll', scrollHandler);
+            
             // Create iframe
             const iframe = document.createElement('iframe');
             iframe.src = demoUrl;
@@ -71,18 +83,34 @@ document.addEventListener('DOMContentLoaded', function() {
                 iframe.id = 'demo-frame';
             }
             
+            // When iframe is loaded, unlock scroll
+            iframe.addEventListener('load', function() {
+                // Delay unlock slightly to catch any late scroll events
+                setTimeout(function() {
+                    scrollLocked = false;
+                    window.removeEventListener('scroll', scrollHandler);
+                    window.scrollTo(0, scrollPos);
+                }, 100);
+                
+                // Mark parent showcase-frame as loaded (for resize controls visibility)
+                const showcaseFrame = self.closest('.showcase-frame');
+                if (showcaseFrame) {
+                    showcaseFrame.classList.add('demo-loaded');
+                }
+            });
+            
             // Append iframe and mark as loaded
             this.appendChild(iframe);
             this.classList.add('loaded');
             
-            // Also mark parent showcase-frame as loaded (for resize controls visibility)
-            const showcaseFrame = this.closest('.showcase-frame');
-            if (showcaseFrame) {
-                showcaseFrame.classList.add('demo-loaded');
-            }
-            
             // Store the base URL for tab switching
             this.dataset.loadedUrl = demoUrl;
+            
+            // Fallback: unlock after 5 seconds
+            setTimeout(function() {
+                scrollLocked = false;
+                window.removeEventListener('scroll', scrollHandler);
+            }, 5000);
         });
     });
     
