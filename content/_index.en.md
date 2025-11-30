@@ -1,3 +1,0 @@
----
-title: "CometVisu - Smarthome Visualization"
----

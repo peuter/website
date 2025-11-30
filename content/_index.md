@@ -1,3 +1,3 @@
 ---
-title: "CometVisu - Smarthome Visualisierung"
+title: "CometVisu - Smarthome Visualization"
 ---
