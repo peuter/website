@@ -654,6 +654,58 @@ code {
     display: none;
 }
 
+/* Demo Loading Overlay with Spinner */
+.demo-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(13, 13, 13, 0.95);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    z-index: 5;
+}
+
+.demo-lazy-container.loading .demo-loading-overlay {
+    display: flex;
+}
+
+.demo-lazy-container.loading .demo-click-overlay,
+.demo-lazy-container.loading .demo-placeholder-img {
+    display: none;
+}
+
+.demo-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--border-color);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.demo-loading-overlay span {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+/* Hide iframe while loading, show when fully loaded */
+.demo-lazy-container.loading .demo-frame,
+.demo-lazy-container.loading .showcase-iframe {
+    opacity: 0;
+    position: absolute;
+}
+
 .demo-lazy-container .demo-frame,
 .demo-lazy-container .showcase-iframe {
     display: none;
@@ -837,20 +889,106 @@ section {
     background: var(--bg-dark);
 }
 
+/* Carousel Styles */
+.carousel-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+}
+
+.carousel-viewport {
+    flex: 1;
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    min-width: 100%;
+}
+
+.carousel-btn {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    z-index: 2;
+}
+
+.carousel-btn:hover {
+    background: var(--bg-elevated);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.carousel-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.carousel-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--border-color);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.carousel-indicator:hover {
+    background: var(--text-secondary);
+}
+
+.carousel-indicator.active {
+    background: var(--primary);
+    transform: scale(1.2);
+}
+
 .customization-levels {
     display: flex;
-    flex-direction: column;
     gap: 24px;
+}
+
+.customization-levels.carousel-track {
+    flex-direction: row;
 }
 
 .level-card {
     display: flex;
+    flex-direction: column;
     gap: 24px;
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 16px;
     padding: 32px;
     transition: var(--transition);
+    box-sizing: border-box;
+}
+
+.level-card.carousel-slide {
+    min-height: 320px;
 }
 
 .level-card:hover {
@@ -906,8 +1044,21 @@ section {
 
 .design-preview {
     display: flex;
+    flex-direction: column;
     gap: 12px;
+}
+
+.design-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     flex-wrap: wrap;
+}
+
+.design-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    min-width: 100px;
 }
 
 .design-chip {
@@ -1289,6 +1440,34 @@ section {
     
     .level-card {
         flex-direction: column;
+    }
+    
+    .carousel-container {
+        flex-wrap: wrap;
+    }
+    
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .carousel-btn-prev {
+        order: 1;
+    }
+    
+    .carousel-viewport {
+        order: 0;
+        flex: 0 0 100%;
+    }
+    
+    .carousel-btn-next {
+        order: 2;
+    }
+    
+    .carousel-indicators {
+        order: 3;
+        flex: 0 0 100%;
+        margin-top: 16px;
     }
     
     .footer-grid {

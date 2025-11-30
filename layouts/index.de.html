@@ -88,7 +88,7 @@
                 </a>
             </div>
             <div class="showcase-content demo-lazy-container" data-demo-url="{{ "demo/" | relURL }}" data-size="desktop">
-                <img src="{{ "images/tile-demo.svg" | relURL }}" alt="CometVisu Tile Demo" class="showcase-img demo-placeholder-img">
+                <img src="{{ "images/tile-demo.png" | relURL }}" alt="CometVisu Tile Demo" class="showcase-img demo-placeholder-img">
                 <div class="demo-click-overlay">
                     <div class="play-button">
                         <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
@@ -96,6 +96,10 @@
                         </svg>
                     </div>
                     <span>Klicken für Live-Demo</span>
+                </div>
+                <div class="demo-loading-overlay">
+                    <div class="demo-spinner"></div>
+                    <span>Demo wird geladen...</span>
                 </div>
             </div>
         </div>
@@ -173,75 +177,106 @@
             </p>
         </div>
         
-        <div class="customization-levels">
-            <div class="level-card">
-                <div class="level-number">1</div>
-                <div class="level-content">
-                    <h3>Farbschema ändern</h3>
-                    <p>Mit wenigen CSS-Variablen das komplette Erscheinungsbild anpassen</p>
-                    <div class="code-preview">
-                        <pre><code>:root {
-  --primary-color: #ff6b35;
-  --background: #1a1a2e;
-  --surface: #16213e;
+        <div class="carousel-container">
+            <button class="carousel-btn carousel-btn-prev" aria-label="Vorheriges">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            
+            <div class="carousel-viewport">
+                <div class="customization-levels carousel-track">
+                    <div class="level-card carousel-slide">
+                        <div class="level-number">1</div>
+                        <div class="level-content">
+                            <h3>Farbschema ändern</h3>
+                            <p>Mit wenigen CSS-Variablen das komplette Erscheinungsbild anpassen</p>
+                            <div class="code-preview">
+                                <pre><code>:root {
+  --primaryColor: #ff9900;
+  --appBackground: #515151;
+  --tileBackground: #2e2e2e;
+  --primaryText: #b6b6b6;
 }</code></pre>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            
-            <div class="level-card">
-                <div class="level-number">2</div>
-                <div class="level-content">
-                    <h3>Vorhandene Designs nutzen</h3>
-                    <p>Wähle aus verschiedenen mitgelieferten Designs</p>
-                    <div class="design-preview">
-                        <span class="design-chip" style="--accent: #ff8000;">Tile</span>
-                        <span class="design-chip" style="--accent: #ffb347;">Pure</span>
-                        <span class="design-chip" style="--accent: #808080;">Metal</span>
-                        <span class="design-chip" style="--accent: #4a90d9;">Planet</span>
+                    
+                    <div class="level-card carousel-slide">
+                        <div class="level-number">2</div>
+                        <div class="level-content">
+                            <h3>Vorhandene Designs nutzen</h3>
+                            <p>Wähle aus verschiedenen mitgelieferten Designs</p>
+                            <div class="design-preview">
+                                <div class="design-group">
+                                    <span class="design-label">Tile-Struktur:</span>
+                                    <span class="design-chip" style="--accent: #ff8000;">Tile</span>
+                                </div>
+                                <div class="design-group">
+                                    <span class="design-label">Pure-Struktur:</span>
+                                    <span class="design-chip" style="--accent: #ffb347;">Pure</span>
+                                    <span class="design-chip" style="--accent: #808080;">Metal</span>
+                                    <span class="design-chip" style="--accent: #4a90d9;">Planet</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            
-            <div class="level-card">
-                <div class="level-number">3</div>
-                <div class="level-content">
-                    <h3>Custom CSS</h3>
-                    <p>Eigene Styles für individuelle Anpassungen ohne Code-Änderungen</p>
-                    <div class="code-preview">
-                        <pre><code>.cv-switch.myCustomStyle {
+                    
+                    <div class="level-card carousel-slide">
+                        <div class="level-number">3</div>
+                        <div class="level-content">
+                            <h3>Custom CSS</h3>
+                            <p>Eigene Styles für individuelle Anpassungen ohne Code-Änderungen</p>
+                            <div class="code-preview">
+                                <pre><code>.cv-switch.myCustomStyle {
   border-radius: 20px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="level-card carousel-slide">
+                        <div class="level-number">4</div>
+                        <div class="level-content">
+                            <h3>Eigene Widgets & Plugins</h3>
+                            <p>Entwickle eigene Widgets für spezielle Anforderungen</p>
+                            <ul class="feature-list">
+                                <li>Plugin-System für externe Bibliotheken</li>
+                                <li>Lazy-Loading für optimale Performance</li>
+                                <li>Qooxdoo Framework für OOP-Entwicklung</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="level-card carousel-slide featured">
+                        <div class="level-number">5</div>
+                        <div class="level-content">
+                            <h3>Eigene Config-Struktur</h3>
+                            <p>Für maximale Flexibilität: Entwickle deine eigene Struktur wie die Tile-Struktur</p>
+                            <ul class="feature-list">
+                                <li>Eigene XML-Schema-Definition</li>
+                                <li>Eigene Parser und Controller</li>
+                                <li>Vollständig eigenständige Visualisierung</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <div class="level-card">
-                <div class="level-number">4</div>
-                <div class="level-content">
-                    <h3>Eigene Widgets & Plugins</h3>
-                    <p>Entwickle eigene Widgets für spezielle Anforderungen</p>
-                    <ul class="feature-list">
-                        <li>Plugin-System für externe Bibliotheken</li>
-                        <li>Lazy-Loading für optimale Performance</li>
-                        <li>Qooxdoo Framework für OOP-Entwicklung</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="level-card featured">
-                <div class="level-number">5</div>
-                <div class="level-content">
-                    <h3>Eigene Config-Struktur</h3>
-                    <p>Für maximale Flexibilität: Entwickle deine eigene Struktur wie die Tile-Struktur</p>
-                    <ul class="feature-list">
-                        <li>Eigene XML-Schema-Definition</li>
-                        <li>Eigene Parser und Controller</li>
-                        <li>Vollständig eigenständige Visualisierung</li>
-                    </ul>
-                </div>
-            </div>
+            <button class="carousel-btn carousel-btn-next" aria-label="Nächstes">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+        </div>
+        
+        <div class="carousel-indicators">
+            <button class="carousel-indicator active" data-index="0" aria-label="Slide 1"></button>
+            <button class="carousel-indicator" data-index="1" aria-label="Slide 2"></button>
+            <button class="carousel-indicator" data-index="2" aria-label="Slide 3"></button>
+            <button class="carousel-indicator" data-index="3" aria-label="Slide 4"></button>
+            <button class="carousel-indicator" data-index="4" aria-label="Slide 5"></button>
         </div>
     </div>
 </section>

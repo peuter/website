@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     demoLazyContainers.forEach(container => {
         container.addEventListener('click', function() {
-            if (this.classList.contains('loaded')) return;
+            if (this.classList.contains('loaded') || this.classList.contains('loading')) return;
             
             const demoUrl = this.dataset.demoUrl;
             if (!demoUrl) return;
@@ -61,6 +61,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const self = this;
             const scrollPos = window.scrollY;
             let scrollLocked = true;
+            
+            // Show loading spinner
+            this.classList.add('loading');
             
             // Lock scroll position during iframe load
             const scrollHandler = function() {
@@ -83,13 +86,36 @@ document.addEventListener('DOMContentLoaded', function() {
                 iframe.id = 'demo-frame';
             }
             
-            // When iframe is loaded, unlock scroll
+            // When iframe is loaded, hide spinner and show demo
             iframe.addEventListener('load', function() {
                 // Delay unlock slightly to catch any late scroll events
                 setTimeout(function() {
                     scrollLocked = false;
                     window.removeEventListener('scroll', scrollHandler);
                     window.scrollTo(0, scrollPos);
+
+                    const loaded = () => {
+                        // Hide loading, show loaded
+                        self.classList.remove('loading');
+                        self.classList.add('loaded');
+                    }
+
+                    if (iframe.contentWindow.cv) {
+                        if (iframe.contentWindow.cv.TemplateEngine.getInstance().isDomFinished()) {
+                            loaded();
+                        } else {
+                            iframe.contentWindow.qx.event.message.Bus.subscribe(
+                                'setup.dom.finished',
+                                function() {
+                                    loaded();
+                                },
+                                this
+                            );
+                        }
+                    } else {
+                        loaded();
+                    }
+                
                 }, 100);
                 
                 // Mark parent showcase-frame as loaded (for resize controls visibility)
@@ -99,18 +125,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             
-            // Append iframe and mark as loaded
+            // Append iframe (hidden while loading via CSS)
             this.appendChild(iframe);
-            this.classList.add('loaded');
             
             // Store the base URL for tab switching
             this.dataset.loadedUrl = demoUrl;
             
-            // Fallback: unlock after 5 seconds
+            // Fallback: unlock and show after 10 seconds
             setTimeout(function() {
                 scrollLocked = false;
                 window.removeEventListener('scroll', scrollHandler);
-            }, 5000);
+                if (self.classList.contains('loading')) {
+                    self.classList.remove('loading');
+                    self.classList.add('loaded');
+                }
+            }, 10000);
         });
     });
     
@@ -192,4 +221,100 @@ document.addEventListener('DOMContentLoaded', function() {
         el.classList.add('animate-target');
         observer.observe(el);
     });
+    
+    // Customization Carousel
+    initCarousel();
 });
+
+function initCarousel() {
+    const container = document.querySelector('.carousel-container');
+    if (!container) return;
+    
+    const track = container.querySelector('.carousel-track');
+    const slides = container.querySelectorAll('.carousel-slide');
+    const prevBtn = container.querySelector('.carousel-btn-prev');
+    const nextBtn = container.querySelector('.carousel-btn-next');
+    const indicators = document.querySelectorAll('.carousel-indicator');
+    
+    if (!track || slides.length === 0) return;
+    
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+    
+    function updateCarousel() {
+        // Move track
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        
+        // Update indicators
+        indicators.forEach((ind, i) => {
+            ind.classList.toggle('active', i === currentIndex);
+        });
+        
+        // Update button states
+        if (prevBtn) prevBtn.disabled = currentIndex === 0;
+        if (nextBtn) nextBtn.disabled = currentIndex === totalSlides - 1;
+    }
+    
+    function goToSlide(index) {
+        if (index < 0) index = 0;
+        if (index >= totalSlides) index = totalSlides - 1;
+        currentIndex = index;
+        updateCarousel();
+    }
+    
+    function nextSlide() {
+        if (currentIndex < totalSlides - 1) {
+            goToSlide(currentIndex + 1);
+        }
+    }
+    
+    function prevSlide() {
+        if (currentIndex > 0) {
+            goToSlide(currentIndex - 1);
+        }
+    }
+    
+    // Event Listeners
+    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+    
+    indicators.forEach(indicator => {
+        indicator.addEventListener('click', function() {
+            const index = parseInt(this.dataset.index, 10);
+            goToSlide(index);
+        });
+    });
+    
+    // Keyboard navigation
+    container.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowLeft') prevSlide();
+        if (e.key === 'ArrowRight') nextSlide();
+    });
+    
+    // Touch/Swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    track.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    
+    track.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+    
+    function handleSwipe() {
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+    }
+    
+    // Initialize
+    updateCarousel();
+}
