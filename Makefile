@@ -6,13 +6,14 @@ HUGO := hugo
 NPM := npm
 DEMO_SOURCE := cometvisu
 DEMO_TARGET := static/demo
+DOCS_TARGET := static/docs
 NODE_VERSION := $(shell node --version 2>/dev/null)
 
 .DEFAULT_GOAL := build
 
-# Full build (demo + website)
+# Full build (demo + docs + website)
 .PHONY: all
-all: demo build
+all: demo docs build
 
 
 # Help
@@ -20,13 +21,15 @@ all: demo build
 help:
 	@echo "CometVisu Website - Available targets:"
 	@echo ""
-	@echo "  make all       - Build demo and website (default)"
-	@echo "  make build     - Build the Hugo website"
-	@echo "  make demo      - Build the CometVisu demo"
-	@echo "  make serve     - Start Hugo development server"
-	@echo "  make clean     - Remove generated files"
+	@echo "  make all        - Build demo, docs and website (default)"
+	@echo "  make build      - Build the Hugo website"
+	@echo "  make demo       - Build the CometVisu demo"
+	@echo "  make docs       - Build the CometVisu documentation"
+	@echo "  make serve      - Start Hugo development server"
+	@echo "  make clean      - Remove generated files"
 	@echo "  make clean-demo - Remove demo build only"
-	@echo "  make check     - Check dependencies"
+	@echo "  make clean-docs - Remove docs build only"
+	@echo "  make check      - Check dependencies"
 	@echo ""
 
 # Check dependencies
@@ -70,6 +73,14 @@ demo-source: prepare-demo
 	@cd $(DEMO_TARGET) && cp resource/demo/visu_config_demo-tile.xml resource/config/visu_config.xml
 	@echo "✓ Demo built successfully"	
 
+# Build the CometVisu documentation
+.PHONY: docs
+docs: prepare-demo
+	@echo "Building CometVisu documentation..."
+	@cd $(DEMO_SOURCE) && ./cv doc -l de --target ../$(DOCS_TARGET)/de -f
+	@cd $(DEMO_SOURCE) && ./cv doc -l en --target ../$(DOCS_TARGET)/en -f
+	@echo "✓ Documentation built successfully"
+
 # Build the Hugo website
 .PHONY: build
 build:
@@ -91,7 +102,7 @@ serve-drafts:
 
 # Clean all generated files
 .PHONY: clean
-clean: clean-demo
+clean: clean-demo clean-docs
 	@echo "Cleaning website build..."
 	rm -rf public/
 	@echo "✓ Clean complete"
@@ -102,6 +113,13 @@ clean-demo:
 	@echo "Cleaning demo build..."
 	rm -rf $(DEMO_TARGET)/
 	@echo "✓ Demo cleaned"
+
+# Clean docs only
+.PHONY: clean-docs
+clean-docs:
+	@echo "Cleaning docs build..."
+	rm -rf $(DOCS_TARGET)/
+	@echo "✓ Docs cleaned"
 
 # Update CometVisu submodule
 .PHONY: update-submodule

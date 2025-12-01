@@ -16,7 +16,7 @@
         <ul class="nav-menu">
             <li><a href="#features">Features</a></li>
             <li><a href="#customization">Anpassung</a></li>
-            <li><a href="{{ $docsBase }}/de/{{ $version }}/manual/" target="_blank" rel="noopener">Dokumentation</a></li>
+            <li><a href="{{ "docs/de/" | relURL }}">Dokumentation</a></li>
             <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
             <li class="nav-lang">
                 <a href="../" class="lang-switch" onclick="localStorage.setItem('cv-lang-choice','en')">EN</a>
@@ -40,7 +40,7 @@
             Vollständig anpassbar – vom Farbschema bis zur eigenen Config-Struktur.
         </p>
         <div class="hero-buttons">
-            <a href="{{ $docsBase }}/de/{{ $version }}/" class="btn btn-primary">
+            <a href="{{ "docs/de/" | relURL }}" class="btn btn-primary">
                 <span>Dokumentation</span>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -320,10 +320,10 @@
             <h2>Bereit für deine eigene Visualisierung?</h2>
             <p>Starte jetzt mit CometVisu und gestalte dein Smarthome nach deinen Vorstellungen.</p>
             <div class="cta-buttons">
-                <a href="{{ $docsBase }}/de/{{ $version }}/manual/install/" class="btn btn-primary btn-large">
+                <a href="{{ "docs/de/manual/install/" | relURL }}" class="btn btn-primary btn-large">
                     Installation starten
                 </a>
-                <a href="{{ $docsBase }}/de/{{ $version }}/manual/config/" class="btn btn-outline btn-large">
+                <a href="{{ "docs/de/manual/config/" | relURL }}" class="btn btn-outline btn-large">
                     Konfiguration lernen
                 </a>
             </div>
@@ -344,9 +344,9 @@
             <div class="footer-links">
                 <h4>Dokumentation</h4>
                 <ul>
-                    <li><a href="{{ $docsBase }}/de/{{ $version }}/manual/install/">Installation</a></li>
-                    <li><a href="{{ $docsBase }}/de/{{ $version }}/manual/config/">Konfiguration</a></li>
-                    <li><a href="{{ $docsBase }}/de/{{ $version }}/manual/config/widgets/">Widgets</a></li>
+                    <li><a href="{{ "docs/de/manual/install/" | relURL }}">Installation</a></li>
+                    <li><a href="{{ "docs/de/manual/config/" | relURL }}">Konfiguration</a></li>
+                    <li><a href="{{ "docs/de/manual/config/widgets/" | relURL }}">Widgets</a></li>
                 </ul>
             </div>
             
@@ -365,7 +365,7 @@
                     <li><a href="https://github.com/CometVisu/CometVisu/releases">Downloads</a></li>
                     <li><a href="https://github.com/CometVisu/CometVisu/blob/develop/ChangeLog">Changelog</a></li>
                     <li><a href="https://github.com/CometVisu/CometVisu/blob/develop/DEVELOPMENT.md">Entwicklung</a></li>
-                    <li><a href="{{ $docsBase }}/en/{{ $version }}/api/">API-Referenz</a></li>
+                    <li><a href="{{ "docs/en/api/" | relURL }}">API-Referenz</a></li>
                 </ul>
             </div>
         </div>

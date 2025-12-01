@@ -1,0 +1,29 @@
+{{- $lang := .Site.Language.Lang -}}
+{{- $isDE := eq $lang "de" -}}
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="{{ "" | relURL }}" class="nav-logo">
+            <img src="{{ "images/comet_icon_512x512_ff8000.png" | relURL }}" alt="CometVisu Logo" class="logo-img">
+            <span class="logo-text">CometVisu</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-menu">
+            <li><a href="{{ "" | relURL }}#features">Features</a></li>
+            <li><a href="{{ "" | relURL }}#customization">{{ if $isDE }}Anpassung{{ else }}Customization{{ end }}</a></li>
+            <li><a href="{{ (printf "docs/%s/" $lang) | relURL }}">{{ if $isDE }}Dokumentation{{ else }}Documentation{{ end }}</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="nav-lang">
+                {{ if $isDE }}
+                <a href="../" class="lang-switch" onclick="localStorage.setItem('cv-lang-choice','en')">EN</a>
+                {{ else }}
+                <a href="{{ "de/" | relURL }}" class="lang-switch" onclick="localStorage.setItem('cv-lang-choice','de')">DE</a>
+                {{ end }}
+            </li>
+        </ul>
+    </div>
+</nav>

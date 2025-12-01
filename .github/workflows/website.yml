@@ -39,6 +39,15 @@ jobs:
           cache: 'npm'
           cache-dependency-path: cometvisu/package-lock.json
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: |
+          pip install -r cometvisu/utils/requirements.txt
+
       - name: Build CometVisu Demo
         run: |
           cd cometvisu
@@ -46,6 +55,12 @@ jobs:
           sed -i 's/"qx.globalErrorHandling": true,/"qx.globalErrorHandling": false,/g' compile.json
           npx qx deploy --clean -t build -f=false --source-maps --save-source-in-map -o ../static/demo
           cp ../static/demo/resource/demo/visu_config_demo-tile.xml ../static/demo/resource/config/visu_config.xml
+
+      - name: Build CometVisu Documentation
+        run: |
+          cd cometvisu
+          ./cv doc -l de --target ../static/docs/de -f
+          ./cv doc -l en --target ../static/docs/en -f
 
       - name: Setup Pages
         id: pages
