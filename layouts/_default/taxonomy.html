@@ -1,0 +1,47 @@
+{{ define "main" }}
+{{- $lang := .Site.Language.Lang -}}
+{{- $isDE := eq $lang "de" -}}
+{{ partial "navbar.html" . }}
+
+<!-- Tags Overview -->
+<section class="blog-hero">
+    <div class="container">
+        <h1 class="section-title">{{ .Title }}</h1>
+        <p class="section-subtitle">{{ if $isDE }}Alle Themen im Blog{{ else }}All topics on the blog{{ end }}</p>
+    </div>
+</section>
+
+<section class="blog-list">
+    <div class="container">
+        {{ $terms := .Data.Terms.Alphabetical }}
+        {{ if $terms }}
+        <div class="blog-tags-cloud">
+            {{ range $terms }}
+            <a class="blog-tag blog-tag-large" href="{{ .Page.RelPermalink }}">#{{ .Page.Title }} <span class="blog-tag-count">{{ .Count }}</span></a>
+            {{ end }}
+        </div>
+        {{ else }}
+        <p class="blog-empty">{{ if $isDE }}Es gibt noch keine Tags.{{ else }}There are no tags yet.{{ end }}</p>
+        {{ end }}
+        <a class="blog-back-link" href="{{ "blog/" | relLangURL }}">&larr; {{ if $isDE }}Zurück zum Blog{{ else }}Back to blog{{ end }}</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer footer-minimal">
+    <div class="container">
+        <div class="footer-bottom">
+            <p>&copy; {{ now.Year }} CometVisu Team. {{ if $isDE }}Alle Rechte vorbehalten.{{ else }}All rights reserved.{{ end }}</p>
+            <p class="footer-legal-links">
+                {{ if $isDE }}
+                <a href="{{ "impressum/" | relURL }}">Impressum</a> |
+                <a href="{{ "datenschutz/" | relURL }}">Datenschutz</a>
+                {{ else }}
+                <a href="{{ "en/imprint/" | relURL }}">Imprint</a> |
+                <a href="{{ "en/privacy/" | relURL }}">Privacy Policy</a>
+                {{ end }}
+            </p>
+        </div>
+    </div>
+</footer>
+{{ end }}

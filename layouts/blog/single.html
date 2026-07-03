@@ -1,0 +1,47 @@
+{{ define "main" }}
+{{- $lang := .Site.Language.Lang -}}
+{{- $isDE := eq $lang "de" -}}
+{{ partial "navbar.html" . }}
+
+<!-- Blog Post -->
+<article class="blog-post">
+    <div class="container blog-post-container">
+        <a href="{{ "blog/" | relLangURL }}" class="blog-back-link">&larr; {{ if $isDE }}Zurück zum Blog{{ else }}Back to blog{{ end }}</a>
+
+        <header class="blog-post-header">
+            {{ with .Params.category }}<span class="blog-badge">{{ . }}</span>{{ end }}
+            <h1>{{ .Title }}</h1>
+            <div class="blog-post-meta">
+                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02.01.2006" }}</time>
+                {{ with .GetTerms "tags" }}
+                <span class="blog-tags">
+                    {{ range . }}<a class="blog-tag" href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a>{{ end }}
+                </span>
+                {{ end }}
+            </div>
+        </header>
+
+        <div class="blog-post-content">
+            {{ .Content }}
+        </div>
+    </div>
+</article>
+
+<!-- Footer -->
+<footer class="footer footer-minimal">
+    <div class="container">
+        <div class="footer-bottom">
+            <p>&copy; {{ now.Year }} CometVisu Team. {{ if $isDE }}Alle Rechte vorbehalten.{{ else }}All rights reserved.{{ end }}</p>
+            <p class="footer-legal-links">
+                {{ if $isDE }}
+                <a href="{{ "impressum/" | relURL }}">Impressum</a> |
+                <a href="{{ "datenschutz/" | relURL }}">Datenschutz</a>
+                {{ else }}
+                <a href="{{ "en/imprint/" | relURL }}">Imprint</a> |
+                <a href="{{ "en/privacy/" | relURL }}">Privacy Policy</a>
+                {{ end }}
+            </p>
+        </div>
+    </div>
+</footer>
+{{ end }}

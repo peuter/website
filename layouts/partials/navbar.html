@@ -13,15 +13,20 @@
             <span></span>
         </button>
         <ul class="nav-menu">
-            <li><a href="{{ "" | relURL }}#features">Features</a></li>
-            <li><a href="{{ "" | relURL }}#customization">{{ if $isDE }}Anpassung{{ else }}Customization{{ end }}</a></li>
+            <li><a href="{{ "" | relLangURL }}#features">Features</a></li>
+            <li><a href="{{ "" | relLangURL }}#customization">{{ if $isDE }}Anpassung{{ else }}Customization{{ end }}</a></li>
+            <li><a href="{{ "blog/" | relLangURL }}">Blog</a></li>
             <li><a href="{{ (printf "docs/%s/" $lang) | relURL }}">{{ if $isDE }}Dokumentation{{ else }}Documentation{{ end }}</a></li>
             <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
             <li class="nav-lang">
                 {{ if $isDE }}
-                <a href="../" class="lang-switch" onclick="localStorage.setItem('cv-lang-choice','en')">EN</a>
+                {{ $enURL := "" | relURL }}
+                {{ range .Translations }}{{ if eq .Language.Lang "en" }}{{ $enURL = .RelPermalink }}{{ end }}{{ end }}
+                <a href="{{ $enURL }}" class="lang-switch" onclick="localStorage.setItem('cv-lang-choice','en')">EN</a>
                 {{ else }}
-                <a href="{{ "de/" | relURL }}" class="lang-switch" onclick="localStorage.setItem('cv-lang-choice','de')">DE</a>
+                {{ $deURL := "de/" | relURL }}
+                {{ range .Translations }}{{ if eq .Language.Lang "de" }}{{ $deURL = .RelPermalink }}{{ end }}{{ end }}
+                <a href="{{ $deURL }}" class="lang-switch" onclick="localStorage.setItem('cv-lang-choice','de')">DE</a>
                 {{ end }}
             </li>
         </ul>

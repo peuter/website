@@ -39,13 +39,17 @@ title = 'CometVisu - Smarthome Visualization'
     url = "#demo"
     weight = 3
   [[menu.main]]
+    name = "Blog"
+    url = "blog/"
+    weight = 4
+  [[menu.main]]
     name = "Dokumentation"
     url = "https://www.cometvisu.org/CometVisu/de/latest/manual"
-    weight = 4
+    weight = 5
   [[menu.main]]
     name = "GitHub"
     url = "https://github.com/CometVisu/CometVisu"
-    weight = 5
+    weight = 6
 
 [build]
   writeStats = true

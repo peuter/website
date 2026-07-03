@@ -1,0 +1,53 @@
+{{ define "main" }}
+{{- $lang := .Site.Language.Lang -}}
+{{- $isDE := eq $lang "de" -}}
+{{ partial "navbar.html" . }}
+
+<!-- Blog Hero -->
+<section class="blog-hero">
+    <div class="container">
+        <h1 class="section-title">Blog</h1>
+        <p class="section-subtitle">{{ with .Description }}{{ . }}{{ else }}{{ if $isDE }}Neuigkeiten, Release-Ankündigungen und Wissenswertes rund um CometVisu{{ else }}News, release announcements and insights about CometVisu{{ end }}{{ end }}</p>
+    </div>
+</section>
+
+<!-- Blog List -->
+<section class="blog-list">
+    <div class="container">
+        {{ $posts := .RegularPages.ByDate.Reverse }}
+        {{ if $posts }}
+        <div class="blog-grid">
+            {{ range $posts }}
+            <article class="blog-card">
+                {{ with .Params.category }}<span class="blog-badge">{{ . }}</span>{{ end }}
+                <time class="blog-card-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02.01.2006" }}</time>
+                <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+                <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}</p>
+                <a href="{{ .RelPermalink }}" class="blog-read-more">{{ if $isDE }}Weiterlesen{{ else }}Read more{{ end }} &rarr;</a>
+            </article>
+            {{ end }}
+        </div>
+        {{ else }}
+        <p class="blog-empty">{{ if $isDE }}Es gibt noch keine Beiträge.{{ else }}There are no posts yet.{{ end }}</p>
+        {{ end }}
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer footer-minimal">
+    <div class="container">
+        <div class="footer-bottom">
+            <p>&copy; {{ now.Year }} CometVisu Team. {{ if $isDE }}Alle Rechte vorbehalten.{{ else }}All rights reserved.{{ end }}</p>
+            <p class="footer-legal-links">
+                {{ if $isDE }}
+                <a href="{{ "impressum/" | relURL }}">Impressum</a> |
+                <a href="{{ "datenschutz/" | relURL }}">Datenschutz</a>
+                {{ else }}
+                <a href="{{ "en/imprint/" | relURL }}">Imprint</a> |
+                <a href="{{ "en/privacy/" | relURL }}">Privacy Policy</a>
+                {{ end }}
+            </p>
+        </div>
+    </div>
+</footer>
+{{ end }}
