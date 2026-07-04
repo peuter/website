@@ -59,11 +59,12 @@ jobs:
       - name: Build CometVisu Documentation
         run: |
           cd cometvisu
-          ./cv doc -l de --doc-dir ../static/docs -f
-          ./cv doc -l en --doc-dir ../static/docs -f
           VERSION=`./cv doc --get-version`
           VERSION_PATH=`./cv doc --get-target-version`
-          CV_VERSION=$VERSION npx qx deploy -t build --set apiviewer=true -f=false -o ../static/api
+          ./cv doc -l de --doc-dir ../static/docs -f --target-version=${VERSION_PATH}
+          ./cv doc -l en --doc-dir ../static/docs -f --target-version=${VERSION_PATH}
+          CV_VERSION=$VERSION npx qx deploy --clean -t build --set apiviewer=true -f=false -o ../static/api
+          ./cv doc --process-versions --doc-dir ../static/docs/
 
       - name: Setup Pages
         id: pages
