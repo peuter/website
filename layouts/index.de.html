@@ -203,20 +203,30 @@
 <section id="backends" class="backends">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">{{ .Params.backends.sectionTitle }}</h2>
+            <h2 class="section-title">Kompatibel mit deinem System</h2>
             <p class="section-subtitle">
-                {{ .Params.backends.sectionSubtitle }}
+                CometVisu verbindet sich mit verschiedenen Smarthome-Backends – auch gleichzeitig mit mehreren
             </p>
         </div>
         
         <div class="backend-grid">
-            {{ range .Params.backends.items }}
             <div class="backend-card">
-                <div class="backend-logo">{{ .logo }}</div>
-                <h3>{{ .title }}</h3>
-                <p>{{ .text }}</p>
+                <div class="backend-logo">KNX</div>
+                <h3>KNX / knxd</h3>
+                <p>Direkte Kommunikation mit dem KNX-Bus über knxd/eibd</p>
             </div>
-            {{ end }}
+            
+            <div class="backend-card">
+                <div class="backend-logo">OH</div>
+                <h3>openHAB</h3>
+                <p>REST-API Integration mit openHAB</p>
+            </div>
+            
+            <div class="backend-card">
+                <div class="backend-logo">MQTT</div>
+                <h3>MQTT</h3>
+                <p>Universelle MQTT-Anbindung für IoT-Geräte</p>
+            </div>
         </div>
     </div>
 </section>
@@ -262,19 +272,19 @@
                 <h4>Community</h4>
                 <ul>
                     <li><a href="{{ "blog/" | relLangURL }}">Blog</a></li>
-                    <li><a href="https://github.com/CometVisu/CometVisu">GitHub</a></li>
-                    <li><a href="https://knx-user-forum.de/forum/supportforen/cometvisu">KNX User Forum</a></li>
-                    <li><a href="https://gitter.im/CometVisu/CometVisu">Gitter Chat</a></li>
+                    <li><a href="https://github.com/CometVisu/CometVisu" target="_blank">GitHub</a></li>
+                    <li><a href="https://knx-user-forum.de/forum/supportforen/cometvisu" target="_blank">KNX User Forum</a></li>
+                    <li><a href="https://gitter.im/CometVisu/CometVisu" target="_blank">Gitter Chat</a></li>
                 </ul>
             </div>
             
             <div class="footer-links">
                 <h4>Projekt</h4>
                 <ul>
-                    <li><a href="https://github.com/CometVisu/CometVisu/releases">Downloads</a></li>
-                    <li><a href="https://github.com/CometVisu/CometVisu/blob/develop/ChangeLog">Changelog</a></li>
-                    <li><a href="https://github.com/CometVisu/CometVisu/blob/develop/DEVELOPMENT.md">Entwicklung</a></li>
-                    <li><a href="{{ "docs/en/api/" | relURL }}">API-Referenz</a></li>
+                    <li><a href="https://github.com/CometVisu/CometVisu/releases" target="_blank">Downloads</a></li>
+                    <li><a href="https://github.com/CometVisu/CometVisu/blob/develop/ChangeLog" target="_blank">Changelog</a></li>
+                    <li><a href="https://github.com/CometVisu/CometVisu/blob/develop/DEVELOPMENT.md" target="_blank">Entwicklung</a></li>
+                    <li><a href="{{ "api/" | relURL }}" target="_blank">API-Referenz</a></li>
                 </ul>
             </div>
         </div>
