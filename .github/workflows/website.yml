@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           submodules: recursive
           fetch-depth: 0
@@ -33,14 +33,14 @@ jobs:
           extended: true
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: '24'
           cache: 'npm'
           cache-dependency-path: cometvisu/package-lock.json
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
 
@@ -66,9 +66,24 @@ jobs:
           CV_VERSION=$VERSION npx qx deploy --clean -t build --set apiviewer=true -f=false -o ../static/api
           ./cv doc --process-versions --doc-dir ../static/docs/
 
+      - name: Resolve documentation version symlinks
+        # `cv doc --process-versions` creates real symlinks (e.g. static/docs/de/latest -> 1.0)
+        # to point "latest"/"develop" at the current version directory. Newer Hugo releases
+        # (>=0.162) intentionally drop symlinked entries when reading directories for security
+        # reasons, so they no longer get copied into `public/` during the static build.
+        # Replace the symlinks with real directory copies so they survive the Hugo build
+        # regardless of the Hugo version used.
+        run: |
+          find static/docs -type l | while read -r link; do
+            target=$(readlink -f "$link")
+            echo "Resolving symlink $link -> $target"
+            rm "$link"
+            cp -a "$target" "$link"
+          done
+
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v6
 
       - name: Build with Hugo
         env:
@@ -82,7 +97,7 @@ jobs:
             --baseURL "${{ steps.pages.outputs.base_url }}/"
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./public
 
@@ -95,4 +110,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

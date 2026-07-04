@@ -1,5 +1,5 @@
 baseURL = 'https://cometvisu.github.io/'
-languageCode = 'en'
+locale = 'en'
 defaultContentLanguage = 'en'
 title = 'CometVisu - Smarthome Visualization'
 
@@ -13,13 +13,13 @@ title = 'CometVisu - Smarthome Visualization'
 
 [languages]
   [languages.en]
-    languageName = "English"
+    label = "English"
     weight = 1
     title = "CometVisu - Smarthome Visualization"
     [languages.en.params]
       description = "Flexible, customizable smarthome visualization for KNX, OpenHAB and more"
   [languages.de]
-    languageName = "Deutsch"
+    label = "Deutsch"
     weight = 2
     title = "CometVisu - Smarthome Visualisierung"
     [languages.de.params]
